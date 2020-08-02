@@ -34,7 +34,7 @@ public class IntegrationTest {
 
   private void testAlliance(List<String> inputLines, String outputExpected) {
     solver.init(inputLines);
-    String output = solver.printAlliances();
+    String output = solver.solveAndGetAlliancesName();
     assertEquals(outputExpected, output);
   }
 
