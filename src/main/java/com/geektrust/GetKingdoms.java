@@ -2,6 +2,7 @@ package com.geektrust;
 
 import com.geektrust.cypher.Encryptor;
 import com.geektrust.dto.Kingdom;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,9 @@ public class GetKingdoms {
   private final Encryptor encryptor;
   Map<String, Kingdom> kingdoms;
 
+  /**
+   * Change this constructor to add more kingdoms and their emblems.
+   */
   public GetKingdoms() {
     kingdomWithEmblems = new HashMap<>();
 
