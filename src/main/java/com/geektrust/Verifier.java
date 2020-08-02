@@ -3,6 +3,9 @@ package com.geektrust;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class contains string matching and char count logic.
+ */
 public class Verifier {
 
   // Create a map of each char count.
