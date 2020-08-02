@@ -1,9 +1,13 @@
 package com.geektrust;
 
 import com.geektrust.util.Utility;
+
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Main source class which will get input file as argument and will print the result.
+ */
 public class Geektrust {
   Solver solver;
 
@@ -20,7 +24,7 @@ public class Geektrust {
     // Solving problem, getting allies.
     geektrust.solver = new Solver();
     geektrust.solver.init(inputLines);
-    String output = geektrust.solver.printAlliances();
+    String output = geektrust.solver.solveAndGetAlliancesName();
 
     // Printing result.
     System.out.print(output);
