@@ -2,6 +2,7 @@ package com.geektrust;
 
 import com.geektrust.dto.Kingdom;
 import com.geektrust.dto.Message;
+
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -26,12 +27,15 @@ public class Solver {
     getMessages = new GetMessages();
   }
 
+  /**
+   * This code will get all kingdoms available and messages sent.
+   */
   public void init(List<String> inputLines) {
     kingdomMap = getKingdoms.getKingdomMapWithName();
     messageList = getMessages.getMessagesAsList(this.kingdomMap, inputLines);
   }
 
-  /*
+  /**
    * Singleton logic to find alliance.
    */
   private boolean checkCanBeAlliedOrNot(Message message) {
@@ -40,6 +44,10 @@ public class Solver {
     return Verifier.matchCharsByCount(sentMessage, kingdom.getEncryptedEmblem());
   }
 
+  /**
+   * This function will find alliances by checking each message.
+   * If a message is sent can be encoded by kingdom, it will be allied.
+   */
   private List<String> getAlliance() {
     Set<Kingdom> allies = new LinkedHashSet<>();
     allies.add(kingdomMap.get(this.messageSender));
@@ -53,7 +61,8 @@ public class Solver {
     return allies.stream().map(Kingdom::getKingdomName).collect(Collectors.toList());
   }
 
-  public String printAlliances() {
+  // Function to get names of alliances or None if not found.
+  public String solveAndGetAlliancesName() {
     List<String> allies = getAlliance();
     StringBuilder output = new StringBuilder();
 
@@ -67,7 +76,7 @@ public class Solver {
           output.append(" ");
         }
       }
-    } else { // Else print None.
+    } else { // Else add None.
       output.append("NONE");
     }
 
