@@ -2,12 +2,21 @@ package com.geektrust.cypher;
 
 /**
  * This class provides a function which can be used to Encrypt message.
+ *
+ * @author dshakya29
+ * @version 1.0
  */
 public class Encryptor {
 
-  // Function returns encrypted string.
-  public String getEncryptedMessage(String message, int shift) {
-    shift %= 26;
+  /**
+   * This function encrypt a message using caesar-cypher.
+   *
+   * @param message Message to be encoded.
+   * @param shift   Key, i.e by which char has to be shifted.
+   * @return String encoded message.
+   */
+  public static String getEncryptedMessage(String message, int shift) {
+    shift %= 26; // Getting modulo to avoid over shifting.
     StringBuilder encryptedMessage = new StringBuilder();
     char currentChar;
     for (int i = 0; i < message.length(); i++) {
@@ -31,7 +40,7 @@ public class Encryptor {
           currentChar = (char) (currentChar + 'A' - 'Z' - 1);
         }
         encryptedMessage.append(currentChar);
-      } else {
+      } else { // If other chars are present
         encryptedMessage.append(currentChar);
       }
     }

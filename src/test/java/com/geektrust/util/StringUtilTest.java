@@ -1,4 +1,4 @@
-package com.geektrust;
+package com.geektrust.util;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +8,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class VerifierTest {
+class StringUtilTest {
 
   @Test
   public void checkGetCharCount() {
     final String text1 = "HelloWorld";
     final String text2 = "WorldHello";
+    final int COUNT = 7; // 7 is count of unique char in text.
 
-    Map<Character, Integer> characterIntegerMap = Verifier.getCharCount(text1);
+    Map<Character, Integer> characterIntegerMap = StringUtil.getCharCount(text1);
 
-    // 7 is count of unique char in text.
-    assertEquals(7, characterIntegerMap.size());
-    assertEquals(characterIntegerMap, Verifier.getCharCount(text2));
+    assertEquals(COUNT, characterIntegerMap.size());
+    assertEquals(characterIntegerMap, StringUtil.getCharCount(text2));
   }
 
   @Test
@@ -27,7 +27,7 @@ class VerifierTest {
     String largeText = "FAIJWJSOOFAMAU";
     String smallText = "ROZO";
 
-    assertFalse(Verifier.matchCharsByCount(largeText, smallText));
+    assertFalse(StringUtil.matchCharsByCount(largeText, smallText));
   }
 
   @Test
@@ -35,6 +35,6 @@ class VerifierTest {
     String largeText = "FAIJJSOOFURZ";
     String smallText = "ROZO";
 
-    assertTrue(Verifier.matchCharsByCount(largeText, smallText));
+    assertTrue(StringUtil.matchCharsByCount(largeText, smallText));
   }
 }

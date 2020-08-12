@@ -1,47 +1,61 @@
 package com.geektrust.dto;
 
-import java.util.Objects;
+import com.geektrust.cypher.Encryptor;
+import com.geektrust.util.StringUtil;
 
+/**
+ * Kingdom class i.e contains all information about a kingdom.
+ * Properties: Name, emblem, encrypted emblem, messageReceived.
+ */
 public class Kingdom {
   private final String kingdomName;
   private final String emblem;
-  private final String encryptedEmblem;
+  private String encryptedEmblem;
+  private String messageReceived;
 
-  public Kingdom(String kingdomName, String emblem, String encryptedEmblem) {
+  public Kingdom(String kingdomName, String emblem) {
     this.kingdomName = kingdomName;
     this.emblem = emblem;
-    this.encryptedEmblem = encryptedEmblem;
+    encryptEmblem();
   }
 
   public String getKingdomName() {
     return kingdomName;
   }
 
+  public String getEmblem() {
+    return emblem;
+  }
+
   public String getEncryptedEmblem() {
     return encryptedEmblem;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Kingdom kingdom = (Kingdom) o;
-    return kingdomName.equals(kingdom.kingdomName) &&
-        emblem.equals(kingdom.emblem) &&
-        encryptedEmblem.equals(kingdom.encryptedEmblem);
+  public void setEncryptedEmblem(String encryptedEmblem) {
+    this.encryptedEmblem = encryptedEmblem;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(kingdomName, emblem, encryptedEmblem);
+  public String getMessageReceived() {
+    return messageReceived;
   }
 
-  @Override
-  public String toString() {
-    return "Kingdom{" +
-        "kingdomName='" + kingdomName + '\'' +
-        ", emblem='" + emblem + '\'' +
-        ", encryptedEmblem='" + encryptedEmblem + '\'' +
-        '}';
+  public void setMessageReceived(String messageReceived) {
+    this.messageReceived = messageReceived;
+  }
+
+  /**
+   * This function encrypt the emblem for further checking using Encryptor class.
+   */
+  private void encryptEmblem() {
+    setEncryptedEmblem(Encryptor.getEncryptedMessage(getEmblem(),
+        getEmblem().length()));
+  }
+
+  /**
+   * This function checks the message if it contains emblem or not.
+   */
+  public boolean canBeAllied() {
+    return StringUtil.matchCharsByCount(getMessageReceived(),
+        getEncryptedEmblem());
   }
 }

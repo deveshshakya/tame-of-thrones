@@ -1,14 +1,22 @@
-package com.geektrust;
+package com.geektrust.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class contains string matching and char count logic.
+ * This class contains public string utility and matching functions.
+ *
+ * @author dshakya29
+ * @version 1.0
  */
-public class Verifier {
+public class StringUtil {
 
-  // Create a map of each char count.
+  /**
+   * This function give a map or each character with it's occurrence.
+   *
+   * @param text String, whose map is char count is required.
+   * @return Map<Character, Integer>, character with their count.
+   */
   public static Map<Character, Integer> getCharCount(String text) {
     Map<Character, Integer> charCount = new HashMap<>();
     for (char c : text.toCharArray()) {
@@ -17,7 +25,13 @@ public class Verifier {
     return charCount;
   }
 
-  // Check whether small string is available in large string or not.
+  /**
+   * Check whether small string is available in large string or not.
+   *
+   * @param largeText String in which other string need to found.
+   * @param smallText String whose occurrence need to be find.
+   * @return boolean result.
+   */
   public static boolean matchCharsByCount(String largeText, String smallText) {
     if (largeText.length() < smallText.length()) {
       return false;
